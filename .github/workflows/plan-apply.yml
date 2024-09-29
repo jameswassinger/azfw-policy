@@ -1,0 +1,95 @@
+name: 'OCIO Firewall Policy Plan and Apply'
+on:
+    push:
+        branches:
+        - dev
+    #pull_request:
+        #branches:
+        #- main
+
+permissions:
+    id-token: write
+    contents: read
+    pull-requests: write
+
+env:
+    ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+    ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+    ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+jobs:
+    firewall-plan:
+        name: 'Firewall Plan'
+        runs-on: ubuntu-latest
+        env:
+            # This is needed since we are running terraform with read-only permissions.
+            ARM_SKIP_PROVIDER_REGISTRATION: true
+
+        steps:
+            # Checkout the repository
+            - name: 'Checkout'
+              uses: actions/checkout@v4
+            
+            # Install Terraform CLI
+            - name: 'Setup Terraform'
+              uses: hashicorp/setup-terraform@v3
+              with:
+                  terraform_wrapper: false
+
+            # Initialize Terraform
+            - name: 'Terraform Init'
+              run: terraform init -backend=false
+            
+            # Check Terraform format
+            - name: 'Terraform Format'
+              run: terraform fmt -check
+              continue-on-error: false
+    
+    firewall-apply-dev:
+        name: 'Apply DEV Firewall Policy'
+        runs-on: ubuntu-latest
+        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+        needs: firewall-plan
+
+        steps:
+            - name: 'Checkout'
+              uses: actions/checkout@v4
+            
+            # Install Terraform CLI
+            - name: 'Setup Terraform'
+              uses: hashicorp/setup-terraform@v3
+              with:
+                  terraform_wrapper: false
+            
+            # Initialize Terraform
+            - name: 'Terraform Init'
+              run: terraform -chdir=environments/development init
+            
+            # Apply Terraform
+            - name: 'Terraform Apply'
+              run: terraform -chdir=environments/development apply -var-file="development.tfvars" -auto-approve
+    
+    #firewall-apply-prod:
+        #name: 'Apply PROD Firewall Policy'
+        #runs-on: ubuntu-latest
+        #if: github.event_name == 'pull_request'
+        #needs: firewall-plan
+
+        #steps:
+            #- name: 'Checkout'
+              #uses: actions/checkout@v4
+            
+            # Install Terraform CLI
+            #- name: 'Setup Terraform'
+              #uses: hashicorp/setup-terraform@v3
+              #with:
+                  #terraform_wrapper: false
+            
+            # Initialize Terraform
+            #- name: 'Terraform Init'
+              #run: terraform -chdir=environments/production/ init
+            
+            # Apply Terraform
+            #- name: 'Terraform Apply'
+              #run: terraform -chdir=environments/production apply -var-file="production.tfvars" -auto-approve
+
