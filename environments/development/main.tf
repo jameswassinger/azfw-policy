@@ -11,14 +11,14 @@ resource "azurerm_log_analytics_workspace" "law_fwpolicy" {
 
 
 
-/*
+
 module "ip_groups" {
   source                       = "../../modules/ipgs"
   ip_groups                    = var.ip_groups
   existing_resource_group_name = data.azurerm_resource_group.rg_fwpolicy.name
-  deployment_name              = var.deployment_name
+  deployment_name              = var.tier
 }
-*/
+
 
 resource "azurerm_firewall_policy" "fwpolicy" {
   name                = "${var.fw_policy_name}-${var.tier}"
