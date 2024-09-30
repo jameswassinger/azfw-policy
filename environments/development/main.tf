@@ -32,19 +32,20 @@ resource "azurerm_firewall_policy" "fwpolicy" {
     retention_in_days                  = 90
   }
 }
-/*
+
 module "network_collection_group" {
   source                       = "../../modules/rcgs/network_rules"
   rule_collection_group_name   = "DefaultNetworkRuleCollectionGroup"
   rule_collection_names        = var.rule_collection_names
-  firewall_policy_name         = "${var.firewall_policy_name}-${var.deployment_name}"
-  deployment_name              = var.deployment_name
+  firewall_policy_name         = "${var.azurerm_firewall_policy.fwpolicy.name}-${var.tier}"
+  deployment_tier              = var.tier
   existing_resource_group_name = data.azurerm_resource_group.rg_fwpolicy.name
   rcg_priority                 = 100
   ip_group_ids                 = module.ip_groups.ipg_ids
   depends_on                   = [azurerm_firewall_policy.fwpolicy]
 }
 
+/*
 module "application_collection_group" {
   source                       = "../../modules/rcgs/application_rules"
   rule_collection_group_name   = "DefaultApplicationRuleCollectionGroup"
