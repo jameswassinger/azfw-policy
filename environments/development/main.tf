@@ -37,7 +37,7 @@ module "network_collection_group" {
   source                       = "../../modules/rcgs/network_rules"
   rule_collection_group_name   = "DefaultNetworkRuleCollectionGroup"
   rule_collection_names        = var.rule_collection_names
-  firewall_policy_name         = "${var.azurerm_firewall_policy.fwpolicy.name}-${var.tier}"
+  firewall_policy_name         = "${var.fw_policy_name}-${var.tier}"
   deployment_tier              = var.tier
   existing_resource_group_name = data.azurerm_resource_group.rg_fwpolicy.name
   rcg_priority                 = 100
