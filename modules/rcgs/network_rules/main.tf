@@ -79,7 +79,7 @@ locals {
           protocols         = ["TCP"]
           source_addresses  = ["10.2.0.45"]
           destination_ports = ["443"]
-          destination_fqdns = ["*.microsoft.com"]
+          destination_fqdns = ["learn.microsoft.com"]
         }
       ]
     },

@@ -1,4 +1,4 @@
-name: 'OCIO Firewall Policy Plan and Apply'
+name: 'Firewall Policy Plan and Apply'
 on:
     push:
         branches:
