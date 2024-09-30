@@ -76,9 +76,9 @@ locals {
       rules = [
         {
           name              = "TestAllowAzureToInternet"
-          description       = "Deny Azure to Onprem"
+          description       = "Allow Azure to Internet"
           protocols         = ["TCP"]
-          source_addresses  = ["10.2.0.45"]
+          source_ip_groups = [var.ip_group_ids["ipg-swa-subnet"]]
           destination_ports = ["443"]
           destination_addresses = ["8.8.8.8"]
         }
