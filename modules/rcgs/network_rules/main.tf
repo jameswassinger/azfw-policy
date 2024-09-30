@@ -71,6 +71,7 @@ locals {
       ]
     },
 
+    // Network rules for Azure to Internet
     "NetAzureToInternet" = {
       rules = [
         {

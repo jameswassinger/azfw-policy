@@ -45,16 +45,15 @@ module "network_collection_group" {
   depends_on                   = [azurerm_firewall_policy.fwpolicy]
 }
 
-/*
+
 module "application_collection_group" {
   source                       = "../../modules/rcgs/application_rules"
   rule_collection_group_name   = "DefaultApplicationRuleCollectionGroup"
   rule_collection_names        = var.rule_collection_names
-  firewall_policy_name         = "${var.firewall_policy_name}-${var.deployment_name}"
-  deployment_name              = var.deployment_name
+  firewall_policy_name         = "${var.fw_policy_name}-${var.tier}"
+  deployment_tier              = var.tier
   existing_resource_group_name = data.azurerm_resource_group.rg_fwpolicy.name
   rcg_priority                 = 200
   ip_group_ids                 = module.ip_groups.ipg_ids
   depends_on                   = [azurerm_firewall_policy.fwpolicy]
 }
-*/
