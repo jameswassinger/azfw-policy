@@ -94,7 +94,7 @@ locals {
           protocols         = ["TCP"]
           source_addresses  = ["10.2.0.45"]
           destination_ports = ["443"]
-          destination_fqdns = ["10.1.2.104"]
+          destination_addresses = ["10.1.2.104"]
         }
       ]
     }
