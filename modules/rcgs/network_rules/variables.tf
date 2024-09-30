@@ -17,7 +17,7 @@ variable "deployment_tier" {
   description = "The name of the deployment."
   type        = string
   validation {
-    condition     = contains(["dev", "prod"], var.deployment_name)
+    condition     = contains(["dev", "prod"], var.deployment_tier)
     error_message = "Valid values for deployment_tier are dev or prod."
   }
 }
