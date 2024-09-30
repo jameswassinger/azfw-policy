@@ -73,7 +73,14 @@ locals {
 
     "NetAzureToInternet" = {
       rules = [
-
+        {
+          name              = "TestDenyAzureToOnprem"
+          description       = "Deny Azure to Onprem"
+          protocols         = ["TCP"]
+          source_addresses  = ["10.2.0.45"]
+          destination_ports = ["443"]
+          destination_fqdns = ["*.microsoft.com"]
+        }
       ]
     },
 
@@ -86,7 +93,7 @@ locals {
           protocols         = ["TCP"]
           source_addresses  = ["10.2.0.45"]
           destination_ports = ["443"]
-          destination_fqdns = ["*.microsoft.com"]
+          destination_fqdns = ["10.1.2.104"]
         }
       ]
     }
