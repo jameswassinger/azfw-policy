@@ -30,6 +30,9 @@ ip_groups = [
   }
 ]
 rule_collection_names = [
+  "AzureToOnprem",
+  "OnpremToAzure",
   "AzureToAzure",
-  "AzureToInternet"
+  "AzureToInternet",
+  "Deny"
 ]
