@@ -74,7 +74,7 @@ locals {
     "NetAzureToInternet" = {
       rules = [
         {
-          name              = "TestDenyAzureToOnprem"
+          name              = "TestAllowAzureToInternet"
           description       = "Deny Azure to Onprem"
           protocols         = ["TCP"]
           source_addresses  = ["10.2.0.45"]
