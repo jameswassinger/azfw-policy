@@ -48,7 +48,7 @@ jobs:
     firewall-apply-dev:
         name: 'Apply DEV Firewall Policy'
         runs-on: ubuntu-latest
-        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+        if: github.event_name == 'push'
         needs: firewall-plan
 
         steps:
