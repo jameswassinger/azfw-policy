@@ -4,7 +4,7 @@ terraform {
     resource_group_name  = "rg-firewallpolicies"
     storage_account_name = "saghactionsfwpolicyprd"
     container_name       = "tfstate"
-    key                  = "development/terraform.tfstate"
+    key                  = "production/terraform.tfstate"
     use_oidc             = true
   }
 }
