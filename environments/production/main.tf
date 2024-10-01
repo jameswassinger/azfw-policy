@@ -3,7 +3,7 @@ data "azurerm_resource_group" "rg_fwpolicy" {
 }
 
 resource "azurerm_log_analytics_workspace" "law_fwpolicy" {
-  name                = var.log_analytics_workspace_name
+  name                = "${var.log_analytics_workspace_name}-${var.tier}"
   location            = data.azurerm_resource_group.rg_fwpolicy.location
   resource_group_name = data.azurerm_resource_group.rg_fwpolicy.name
   sku                 = "PerGB2018"
