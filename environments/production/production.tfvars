@@ -1,5 +1,5 @@
-subscription_id              = TF_VAR_subscription_id
-tenant_id                    = TF_VAR_tenant_id
+#subscription_id              = TF_VAR_subscription_id
+#tenant_id                    = TF_VAR_tenant_id
 tier                         = "prd"
 existing_rg_name             = "rg-firewallpolicies"
 log_analytics_workspace_name = "law-firewallpolicies"
