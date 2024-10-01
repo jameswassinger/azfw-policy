@@ -24,6 +24,8 @@ jobs:
         env:
             # This is needed since we are running terraform with read-only permissions.
             ARM_SKIP_PROVIDER_REGISTRATION: true
+            TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+            TF_VAR_tenant_id: ${{ secrets.ARM_TENANT_ID }}
 
         steps:
             # Checkout the repository
