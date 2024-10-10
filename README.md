@@ -4,4 +4,4 @@
 Automating administration and managment of the Azure Firewall Policy using Terraform and GitHub Actions. 
 
 ## Details
-See [jameswassinger.com](https://jameswassinger.com/p/automate-azure-firewall-policy-with-terraform-and-gh-actions) for setup and usage details. 
+See [Automating Azure Firewall Policy Using GitHub Actions and Terraform](https://www.linkedin.com/pulse/automating-azure-firewall-policy-using-github-actions-james-wassinger-4vioe/?trackingId=nfYnnHbpQuC1jt9XV6kQEw%3D%3D) for setup and usage details. 
